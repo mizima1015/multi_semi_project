@@ -3,3 +3,5 @@
 
 - 경로: 대중교통혼잡 > sample_data > 서울교통공사_지하철혼잡도정보 (2017, 2019, 2021, 2022)
   - 출처: [공공데이터포털](https://www.data.go.kr/data/15071311/fileData.do)
+- 경로: 기상조건_대중교통 > data > 서울_기온및강수량분석
+  - 출처: [기상청 기상자료개발포털] 기온분석 https://data.kma.go.kr/stcs/grnd/grndTaList.do?pgmNo=70 강수량분석 https://data.kma.go.kr/stcs/grnd/grndRnList.do?pgmNo=69
