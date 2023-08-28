@@ -9,4 +9,5 @@
   - 출처: [서울열린데이터광장](https://data.seoul.go.kr/dataList/OA-12914/S/1/datasetView.do)
 - 경로 : 특일정보 > 한국천문연구원_특일정보
   - 출처 : [공공데이터포털](https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15012690) 
-
+- 경로: 기상조건_대중교통 > data > 서울_통근·통학시 이용하는 교통수단 통계(2022)
+  - 출처: [서울열린데이터광장](https://data.seoul.go.kr/dataList/10283/S/2/datasetView.do)  
