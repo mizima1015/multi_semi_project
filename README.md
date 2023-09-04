@@ -11,3 +11,6 @@
   - 출처 : [공공데이터포털](https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15012690) 
 - 경로: 기상조건_대중교통 > data > 서울_통근·통학시 이용하는 교통수단 통계(2022)
   - 출처: [서울열린데이터광장](https://data.seoul.go.kr/dataList/10283/S/2/datasetView.do)  
+
+- 서울 1호선 지하철 역의 일부가 경인선, 경부선, 경원선 등의 이름으로 data에 존재함
+  - 호선명을 서울 1호선으로 할지, 아니면 각자의 호선명을 살릴지?
