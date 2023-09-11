@@ -13,8 +13,3 @@
     - (월요일이용객수)/{(일주일전체이용객수)/7}
     - 시험삼아 평균으로도 해 봄 == (월요일평균이용객수)/{(일주일평균이용객수)/7}
     - [코드](https://github.com/mizima1015/multi_semi_project/blob/main/기상조건_대중교통/crawling/요일별비율구하기.ipynb)
-   * 월별 비율 산출
-     - (1월평균 이용객수) / {(월전체합평균)/12개월} = 1월 비율
-     - 월별비율_1 : 전체 합이 12가 되는 비율
-     - 월별비율_2 : 전체 합이 1이 되는 비율
-     - [코드](https://github.com/mizima1015/multi_semi_project/blob/main/기상조건_대중교통/crawling/월별_비율_구하기.ipynb)
