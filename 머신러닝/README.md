@@ -1,11 +1,21 @@
 # 머신러닝 코드
 
-1. ver1.(23.09.12 최종수정)
-   -  train/validation/test: 5 : 3: 2 으로 나누어 학습
-   - XGBRegressor와 LGBMResgressor 최적화 진행중
-2. ver2. (23.09.12 최종수정)
+1. ver0.1(23.09.13 최종수정)
+   -  train/test: 7 : 3 으로 나누어 학습
+   -  Best 평가지표 (MAE: ,RMSE: , R2: )
+  
+2. ver0.2 (23.09.13 최종수정)
    -  train/test: 8 : 2 으로 나누어 학습
-   -  XGBRegressor와 LGBMResgressor 최적화 진행중
+   -  Best 평가지표 (MAE: ,RMSE: , R2: )
+
+3. ver0.3 (23.09.13 최종수정)
+   -  train/validation/test: 4 : 3 : 3 으로 나누어 학습
+   -  Best 평가지표 (MAE: ,RMSE: , R2: )
+
+4. ver0.4 (23.09.13 최종수정)
+   -  train/validation/test: 5 : 3 : 2 으로 나누어 학습
+   -  Best 평가지표 (MAE: ,RMSE: , R2: )
+
 
 # 사용 모델
 1. [Scikit-learn RandomForestRegressor](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestRegressor.html#sklearn.ensemble.RandomForestRegressor)
