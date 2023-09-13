@@ -16,7 +16,7 @@
    -  train/validation/test: 5 : 3 : 2 으로 나누어 학습
    -  Best 평가지표 (MAE: 2.14 ,RMSE: 3.30, R2: 0.96)
 
-# 모든 버전에서 XGBoost와 LGBM의 성능이 좋았음
+## 모든 버전에서 XGBoost와 LGBM의 성능이 좋았음
    - 두 모델에 대하여 최적화 진행 중
 
 
