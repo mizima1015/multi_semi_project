@@ -6,6 +6,10 @@
   - 서비스 링크 : http://15.152.248.112:8000/
     (서비스 링크의 경우, 잡아먹는 리소스가 너무 커 서버를 계속 켜둘 수 없다. 사용모습은 유튜브로 확인 또는 아래 웹 개발팀원에 연락 필요)
     (웹개발 팀원 : https://kimec995.github.io/)
+
+    ![서비스이미지](README_image/서비스사진/서비스사진1.png)
+    ![서비스이미지](README_image/서비스사진/서비스사진2.png)
+    ![서비스이미지](README_image/서비스사진/서비스사진3.png)
     
 
 ## 주제 : 지하철 혼잡도 예측 및 사용자 분산 서비스
@@ -58,7 +62,7 @@
 
     4. 기상조건
        
-       ![README_image](README_image/EDA사진/기상조건에 따른승객.png)
+       ![README_image](README_image/EDA사진/기상조건에 따른 승객.png)
 
        ![README_image](README_image/EDA사진/강수량.png)
 
