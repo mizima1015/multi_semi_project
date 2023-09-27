@@ -53,7 +53,9 @@
 
       
     3. 시간대 / 시간대별 승객 수 비교
-       ![README_image](README_image/EDA사진/시간대별승객수(1).png)
+       ![README_image](README_image/EDA사진/시간대별승객수(3).png)
+   
+       ![README_image](README_image/EDA사진/시간대별승객수(4).png)
 
        ![README_image](README_image/EDA사진/시간대별승객수(2).png)
 
@@ -62,7 +64,7 @@
        - 유의미한 변수로 판단
       
 
-    4. 기상조건
+    5. 기상조건
        
        ![README_image](README_image/EDA사진/기상조건에 따른 승객.png)
 
