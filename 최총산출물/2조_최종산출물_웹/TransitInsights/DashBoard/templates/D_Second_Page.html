@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- graph_template.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/heatmap.js"></script>
+</head>
+
+<body>
+    <div id="main-container" style="display: flex; justify-content: space-between;">
+        <div id="left-container" style="flex: 1;">
+            <div id="top-text" style="width: 100%; height: 15%;">
+                <div style="text-align: center;">
+                    <h4>가장 혼잡도가 낮은 곳</h4>
+                    <h2>{{ Print_Nansu }}%</h2>
+                </div>
+            </div>
+            <div id="middle-text" style="margin-top: 4rem; width: 100%; height: 15%;">
+                <div style="text-align: center;">
+                    <h4>가장 혼잡도가 낮은 곳</h4>
+                    <h2>{{ Print_Nansu }}%</h2>
+                </div>
+            </div>
+                <div id="top-chart" style="margin-top: 1rem;  width: 100%; height: 60%;"></div>
+        </div>
+        <div id="right-container" style="flex: 2;">
+            <div id="barchart" style="width: 90%; height: 400px;"></div>
+        </div>
+    </div>
+    <div id="big-chart" style="width: 100%; height: 30rem;"></div>
+    <div id="heatmap-container" style="width: 600px; height: 400px;"></div>
+
+    <script>
+        // Highcharts 큰 그래프 코드
+        Highcharts.chart('big-chart', {
+            chart: {
+                type: 'spline'
+            },
+            title: {
+                text: '한성대입구역의 하루 혼잡도'
+            },
+            xAxis: {
+                categories: {{ BigLine_col|safe }}
+            },
+            yAxis: {
+                title: {
+                    text: 'Values'
+                }
+            },
+            series: [{
+                name: 'Data Series',
+                data: {{ BigLine_Val|safe }}
+            }]
+        });
+
+        // Highcharts 큰 그래프 코드
+        Highcharts.chart('barchart', {
+            chart: {
+                type: 'bar'
+            },
+            title: {
+                text: '오전 6시의 혼잡도'
+            },
+            xAxis: {
+                categories: {{ categories|safe }}
+            },
+            yAxis: {
+                title: {
+                    text: 'Values'
+                }
+            },
+            series: [{
+                name: 'Data Series',
+                data: {{ data|safe }}
+            }]
+        });
+        
+        // Highcharts 위쪽 작은 파이 차트 코드
+        Highcharts.chart('top-chart', {
+            chart: { type: 'pie' },
+            series: [{ name: 'Data Series', data: {{ data|safe }}}],
+            title: { text: 'Top Pie Chart'},
+        });
+
+        // Highcharts를 사용하여 히트맵 생성
+        Highcharts.chart('heatmap-container', {
+            chart: {
+                type: 'heatmap',
+                marginTop: 40,
+                marginBottom: 80,
+                plotBorderWidth: 1
+            },
+            title: {
+                text: '히트맵 테스트'
+            },
+            xAxis: {
+                categories: {{ row_name|safe }},
+            },
+            yAxis: {
+                categories:{{ col_name|safe }},
+            },
+            colorAxis: {
+                min: 0,
+                minColor: '#444444',
+                maxColor: '#FF0000'
+            },
+            legend: {
+                align: 'right',
+                layout: 'vertical',
+                margin: 0,
+                verticalAlign: 'top',
+                y: 25,
+                symbolHeight: 280
+            },
+            series: [{
+                borderWidth: 1,
+                data: {{ val_name|safe }},
+   
+            }]
+        });
+    </script>
+</body>
+</html>
+<a href ="/DashBoard" class="resAddBtn btn btn-info" role="button">대시보드 홈으로</a>
+
+{% endblock %}

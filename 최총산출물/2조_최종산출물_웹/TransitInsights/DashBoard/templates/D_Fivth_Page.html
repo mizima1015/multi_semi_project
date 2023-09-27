@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+<script src="https://code.highcharts.com/modules/heatmap.js"></script>
+<!-- graph_template.html -->
+<!DOCTYPE html>
+    <form style="text-align: center;" action="{% url 'D_Fivth' %}" method="post">
+        {% csrf_token %}
+        <div id="ONE_LINE_CHART"></div>
+        <div>
+            <label for="Station_Select">역 이름</label>
+            <input type="text" id="Station_Select" list="Select_Station" placeholder="어느 역을 확인할까요" name="Station_Select">
+            <datalist id="Select_Station">
+                {% for item in Station_name %}
+                <option value="{{ item }}">{{ item }}</option>
+                {% endfor %}
+            </datalist>
+            <input type="hidden" name="Line_Select" value="{{ Selected_Line|safe }}">
+            <input type="hidden" name="Selected_Station" value="{{ Selected_Station|safe }}">
+            <button type="submit">결과확인</button>
+        </div>
+        <hr>
+        <div>
+            <a href="javascript:history.back()">이전 페이지로 돌아가기</a>
+        </div>
+    </form>
+
+</body>
+<script>
+    Highcharts.chart('ONE_LINE_CHART', {
+        chart: {
+            type: 'spline'
+        },
+        title: {
+            text: '{{ Line_Name|safe }}호선 {{ Selected_Station|safe }}역 그래프',
+            style: {
+                fontSize: '1.5rem'
+            }
+        },
+        tooltip: {
+            style: {
+                fontSize: '12px'
+            },
+        },
+        xAxis: {
+            categories: {{ col_name|safe }}
+        },
+        yAxis: {
+            title: {
+                text: 'Values'
+            }
+        },
+        series: [{
+            name: '상행',
+            data: {{ One_St_Line_UP|safe }}
+        },
+        {
+            name: '하행',
+            data: {{ One_St_Line_DOWN|safe }}
+        }]
+    });
+
+
+</script>
+</html>
+{% endblock %}

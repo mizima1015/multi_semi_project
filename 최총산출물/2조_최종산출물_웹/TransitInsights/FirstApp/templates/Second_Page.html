@@ -1,0 +1,242 @@
+{% extends 'base.html' %}
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'base.css' %}" />
+
+{% block content %}
+
+<style>
+    .switch-button {
+        position: relative;
+        display: inline-block;
+        width: 2rem;
+        height: 2rem;
+    }
+    
+    .switch-button input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+    
+    .onoff-switch {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius:20px;
+        background-color: #ccc;
+        box-shadow: inset 1px 5px 1px #999;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+    
+    .onoff-switch:before {
+        position: absolute;
+        height: 1.2rem;
+        width: 1.2rem;
+        left: 4px;
+        bottom: 4px;
+        background-color: #424242;
+        -webkit-transition: .5s;
+        transition: .4s;
+        border-radius:20px;
+    }
+    
+    .switch-button input:checked + .onoff-switch {
+        background-color: red;
+        box-shadow: inset 1px 5px 1px red;
+    }
+    
+    .switch-button input:checked + .onoff-switch:before {
+        -webkit-transform: translateX(1rem);
+        -ms-transform: translateX(1rem);
+        transform: translateX(2rem);
+    }
+</style>
+<div style="margin-top:8rem; 
+            height:35rem;
+            {% comment %} margin-left:3rem;  {% endcomment %}
+            text-align:center;
+            margin-left:-6rem;
+            margin-bottom: 4rem;
+            font-family: 'Noto Sans KR', sans-serif;
+            ">
+    <h3 style="font-family: 'Noto Sans KR', sans-serif; font-size:3rem; font-weight:500;">
+        2. 하단 세 개의 빈 칸을 채워주세요.
+    </h3>
+    <div style="margin: 0 auto;  position: relative; height: 0.8px; width: 50rem; background-color: #424242;"></div>
+    
+    <br>
+    <!-- 전철 노선도 이미지 -->
+    <div style="justify-content: center;" class="container">
+        <!-- Trigger the modal with a button -->
+        <button style="
+                        {% comment %} background-color:{{ SL_Color|safe }};  {% endcomment %}
+                        background-color:#FFFFFF;
+                        border-color:{{ SL_Color|safe }}; 
+                        {% comment %} color:#FFFFFF;  {% endcomment %}
+                        color:{{ SL_Color|safe }};
+                        border-radius:4rem;
+                        border-width:0.2rem;
+                        width:15rem; height:5rem;
+                        "
+                        type="submit" 
+                        class="btn btn-info btn-lg" 
+                        data-toggle="modal" 
+                        data-target="#myModal">
+            {{ L_IMG_N|safe }}지도
+        </button>
+            
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+            
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">{{ L_IMG_N|safe }} 지도입니다</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <img src = "/static/images/{{ SW_ID|safe }}HS_map.jpg" alt="" style="width:60rem;">
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+    <br>
+    <!-- 데이터 리스트 3 줄 병렬 -->
+    <form style="margin-left:-2rem;" action="{% url 'Third_Page' %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="Line_Select" value="{{ SW_ID|safe }}">
+    
+        <!-- 첫 번째 리스트:출발 -->
+        <div>
+            <label class="Text_align" for="station_select1">출발</label>
+            <input type="text" id="station_select" list="stations1" placeholder="출발역을 검색하세요" name="selected_Start">
+            <datalist id="stations1">
+            {% for S in SW_Station %}
+                <option value="{{ S.STATION }}">{{ S.STATION }}</option>
+            {% endfor %}
+            </datalist>
+        </div>
+
+        <!-- 두 번째 리스트:도착 -->
+        <div>
+            <label class="Text_align" for="station_select2">도착</label>
+            <input type="text" id="station_select2" list="stations2" placeholder="도착역을 검색하세요" name="selected_End">
+            <datalist id="stations2">
+            {% for S in SW_Station %}
+                <option value="{{ S.STATION }}">{{ S.STATION }}</option>
+            {% endfor %}
+            </datalist>
+        </div>
+        
+        <!-- 세 번째 리스트:시간대 -->
+        <!-- <div>
+            <label for="station_select3">시간</label>
+            <input type="time" list="popularHours" name="selected_Time" />
+            <datalist id="popularHours">
+            {% for Time in "12345678910" %}
+                <option value="{{ Time }}">{{ Time }}</option>
+            {% endfor %}
+            </datalist>
+        </div> -->
+        
+        <!-- 네 번째 리스트:날짜 + 시간대 -->
+        <div>
+            <label class="Text_align" for="station_select4">날짜</label>
+            <input type="datetime-local" list="Days" name="selected_DateTime" />
+        </div>
+
+        <!-- 다섯 번째 리스트: 공휴일 체크박스 -->
+        <div class="Text_align" style="margin-top: 1rem;">
+            <label>공휴일인가요?</label>
+            <label class="switch-button">
+                <input type="checkbox" name="Toggle_SW_Holiday", value="True"/>
+                <span class="onoff-switch"></span>
+            </label>
+        </div>
+
+        <br>
+        <div style="margin: 0 auto;  position: relative; height: 0.8px; width: 50rem; background-color: #424242;"></div>
+
+        <h3 style="font-family: 'Noto Sans KR', sans-serif; font-size:3rem; font-weight:500;">
+            3. 확인 버튼을 눌러주세요.
+        </h3>
+        <!-- 버튼 -->
+        <div>
+        <button style="background-color:{{ SL_Color|safe }}; border-color:{{ SL_Color|safe }};color:white; width:10rem; height:3rem; border-radius:2rem; font-family: 'Noto Sans KR', sans-serif;" type="submit">확인</button>
+        </div>
+        <input type="hidden" name="SL_Color" value="{{ SL_Color|safe }}">
+    </form>
+
+    <!-- 동작은 하지만 최고는 아님. 혹시 몷라 남김
+    <form>
+        <label for="station_select"></label>
+        <select id="station_select" name="station_select">
+            <option value="출발 역을 선택하세요">출발역을 선택하세요</option>
+            {% for SW_Station in SW_Station %}
+                <option value="{{ station.SW_Station }}">{{ SW_Station.SW_Station }}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="출발역 선택">
+    </form>
+
+    <form>
+        <label for="station_select"></label>
+        <select id="station_select" name="station_select">
+            <option value="출발 역을 선택하세요">시간대를 선택하세요</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+        </select>
+        <input type="submit" value="시간대 선택">
+    </form> -->
+
+    <!-- 동작은 하지만 최고는 아닌 코드2. -->
+    <div>
+    <!-- 검색드롭박스 출발-->
+        <!-- <div style="text-align:center; margin-top: 5rem;">
+            <form action="{% url 'Third_Page' %}" method="POST">{% csrf_token %}
+            <label for="station_select">출발</label>
+            <input type="text" id="station_select" list="stations" placeholder="출발역을 검색하세요" name="selected_start">
+            <datalist id="stations">
+                {% for SW_Station in SW_Station %}
+                    <option value="{{ SW_Station.SW_Station }}">{{ SW_Station.SW_Station }}</option>
+                {% endfor %}
+            </datalist>
+            </from>
+        </div> -->
+        <!-- 검색드롭박스 도착-->
+        <!-- <div style="text-align:center; margin-top: 5rem;">
+            <form action="{% url 'Third_Page' %}" method="POST">{% csrf_token %}
+            <label for="station_select">도착</label>
+            <input type="text" id="station_select" list="stations" placeholder="도착역을 검색하세요" name="selected_end">
+            <datalist id="stations">
+                {% for SW_Station in SW_Station %}
+                    <option value="{{ SW_Station.SW_Station }}">{{ SW_Station.SW_Station }}</option>
+                {% endfor %}
+            </datalist>
+            <input type="submit" value="도착역 선택">
+        </div>
+     -->
+        <!-- 검색드롭박스 시간-->
+        <!-- <div style="text-align:center; margin-top: 5rem;">
+            <label for="station_select">시간</label>
+            <input type="time" list="popularHours" />
+                <datalist id="popularHours">
+                    <option value="12:00"></option>
+                    <option value="13:00"></option>
+                    <option value="14:00"></option>
+                </datalist>
+            <input type="submit" value="시간대 선택">
+        </div> -->
+    </div>
+
+</div>
+{% endblock %}

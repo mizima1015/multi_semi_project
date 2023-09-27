@@ -1,0 +1,195 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/pictorial.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+<div style="margin-top:7rem; 
+            height:35rem;
+            margin-left:3rem; 
+            text-align:center;
+            {% comment %} margin-left:-6rem; {% endcomment %}
+            margin-bottom: 5rem;
+            display: flex;
+            align-items: center;
+            font-family: 'Noto Sans KR', sans-serif;
+            font-weight:400; 
+            ">
+    <div style="margin-left:5rem; text-align:left; color:{{ SL_Color|safe }}; font-weight:800; ">
+        <div style="text-align:center; border: 0.2rem solid {{ SL_Color|safe }}; justify-content: center; align-items:center; width:25rem; border-radius:1.5rem; height:3rem;">
+            <h4 style="margin:0.2rem;">
+                {{ selected_Start }}에서
+            </h4>
+        </div>
+        <br>
+        <div style="text-align:center; border: 0.2rem solid {{ SL_Color|safe }}; justify-content: center; align-items:center; width:25rem; border-radius:1.5rem; height:3rem;">
+            <h4 style="margin:0.2rem;">
+                {{ selected_End }}까지
+            </h4>
+        </div>
+        <br>
+        <div style="text-align:center; border: 0.2rem solid {{ SL_Color|safe }}; justify-content: center; align-items:center; width:25rem; border-radius:1.5rem; height:3rem;">
+            <h5 style="margin:0.5rem;">
+                {{ selected_YEAR|safe }} 년 {{ selected_MONTH }} 월 {{ selected_DAY }}일 {{ selected_WeekDay }}요일 {{ selected_TIME }} 시
+            </h5>
+        </div>
+        <br>
+        <div>
+            <a href="javascript:history.back()">이전 페이지로 돌아가기</a>
+        </div>
+        {% comment %} <br>
+        <div style="text-align:center; border: 0.2rem solid #ccc; justify-content: center; align-items:center; width:25rem; border-radius:1.5rem; height:3rem; color:#424242;">
+            <h5 style="margin:0.5rem;">
+                공휴일여부:{{ Toggle_SW_Holiday }}
+            </h5>
+        </div>
+        <br>
+        <div style="text-align:center; border: 0.2rem solid #ccc; justify-content: center; align-items:center; width:25rem; border-radius:1.5rem; height:3rem; color:#424242;">
+            <h5 style="margin:0.5rem;">
+                {{ SW_Dif }} 정류장 이동합니다.
+            </h5>
+        </div> {% endcomment %}
+    </div>
+    <div style="display:flex;
+                margin-left:5rem;
+                text-align:center; 
+                border: 0.5rem solid {{ SL_Color|safe }}; 
+                justify-content: center; 
+                align-items:center; 
+                width:60rem; 
+                border-radius:1.5rem; 
+                height:45rem; 
+                color:{{ SL_Color|safe }};
+                ">
+        <div style="
+                    margin-left:3rem;
+                    margin-top:-10rem;
+                    flex: 1;">
+            {% comment %} <h4>
+                {{ selected_YEAR }} 년 {{ selected_MONTH }} 월 {{ selected_DAY }}일 {{ selected_WeekDay }}요일 공휴일여부:{{ Toggle_SW_Holiday }} {{ selected_TIME }} 시에
+            </h4> {% endcomment %}
+            <br>
+            <h2 style="margin-top:2rem; font-size:1.5rem;">
+                {{ L_IMG_N|safe }} {{ selected_TIME }}:00
+            </h2>
+            <h2 style="margin-top:-0.5rem; font-size:2rem;">
+                {{ selected_Start }} => {{ selected_End }}
+            </h2>
+            <h2 style="margin-top:-0.5rem; font-size:1.5rem; font-weight:200; color:#ababab;">
+                예상 혼잡도는
+            </h2>
+            <br>
+            <div style="display: flex; text-align:center; justify-content: center; align-items:center; margin-top:-1rem;">
+                <div>
+                    <h1 style="font-size:7rem; font-weight:800;">
+                        {{ RESULT_VAL }}%
+                    </h1>
+                </div>
+                <div>
+                    <h2 style="font-size:3rem; font-weight:400;">
+                        {{ HonJap }}
+                    </h2>
+                    <h4 style="letter-spacing:0.2rem; font-size:1.5rem; font-weight:200; color:#ababab;">5단계 중 {{ HonJap_N|safe }}단계</h4>
+                </div>  
+            </div>
+            <br>
+            <!-- 전철 노선도 이미지 -->
+            <div>
+                <!-- Trigger the modal with a button -->
+                <a>혼잡도란</a>
+                <button style="background-color:{{ SL_Color|safe }};" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">?</button>
+            
+                <!-- Modal -->
+                <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog">
+                    
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">혼잡도의 기준은 뭔가요?</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <p>혼잡도는 입석 승객들 사이 통로에 까지 승객이 서 있고 입석 승객의 몸이 맞닿는 정도입니다..</p>
+                                <p>0~ 24% : 승차인원 대부분 착석이 가능합니다. 매우 여유롭습니다.</p>
+                                <p>~ 58% : 착석은 운에 따라 다르겠지만, 일반적으로 여유롭습니다.</p>
+                                <p>~ 100% : 착석은 어렵습니다. 사람들과 부딪힐 가능성이 높습니다.</p>
+                                <p>~ 150% : 정부 권고사항입니다. 이 이상은 가능한 탑승을 자제해주세요.</p>
+                                <p>~ 이상 : 매우 혼잡해 호흡이 불가할 수 있습니다. 거수가 힘듭니다.
+
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="margin-right:-40rem; flex: 2;">
+            <div id="TESTTT" style="margin-top: 1rem;  width: 35%; height: 100%;"></div>
+        </div>
+    </div>
+    <script>
+        Highcharts.chart('TESTTT', {
+            chart: {
+                type: 'pictorial',
+                navigation: {
+                    buttonOptions: {
+                        theme: {
+                            fill: 'rgba(0, 0, 0, 0)',
+                        }
+                    }
+                },
+                backgroundColor: 'rgba(0, 0, 0, 0)'
+            },
+        
+            title: {
+                text: ''
+            },
+        
+            xAxis: {
+                categories: [''],
+                lineWidth: 0,
+                opposite: true
+            },
+        
+            yAxis: {
+                visible: false,
+                stackShadow: {
+                    enabled: true
+                },
+                max: 100
+            },
+        
+            tooltip: {
+                headerFormat: '<b>{point.key}</b><br>',
+                pointFormat: '<span style="font-size: 12px;">{series.name}: {point.y}%</span>'
+            },
+        
+            plotOptions: {
+                series: {
+                    pointPadding: 0,
+                    groupPadding: 0,
+                    stacking: 'normal',
+                    paths: [{
+                        definition: 'M53.5,476c0,14,6.833,21,20.5,21s20.5-7,20.5-21V287h21v189c0,14,6.834,21,20.5,21 c13.667,0,20.5-7,20.5-21V154h10v116c0,7.334,2.5,12.667,7.5,16s10.167,3.333,15.5,0s8-8.667,8-16V145c0-13.334-4.5-23.667-13.5-31 s-21.5-11-37.5-11h-82c-15.333,0-27.833,3.333-37.5,10s-14.5,17-14.5,31v133c0,6,2.667,10.333,8,13s10.5,2.667,15.5,0s7.5-7,7.5-13 V154h10V476 M61.5,42.5c0,11.667,4.167,21.667,12.5,30S92.333,85,104,85s21.667-4.167,30-12.5S146.5,54,146.5,42 c0-11.335-4.167-21.168-12.5-29.5C125.667,4.167,115.667,0,104,0S82.333,4.167,74,12.5S61.5,30.833,61.5,42.5z'
+                    }]
+                }
+            },
+        
+            series: [{
+                name: '',
+                data: [{{ RESULT_VAL|safe }}],
+                dataLabels: {
+                    style: {
+                        fontSize: '16px'
+                    }
+                },
+                color:'{{ SL_Color|safe }}'
+            }
+            ],
+        });
+    </script>
+    
+</div>
+{% endblock %}

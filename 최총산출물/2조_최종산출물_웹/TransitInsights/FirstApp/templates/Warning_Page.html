@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div style="margin-top:20rem; 
+            height:35rem;
+            {% comment %} margin-left:3rem;  {% endcomment %}
+            text-align:center;
+            {% comment %} margin-left:-6rem; {% endcomment %}
+            margin-bottom: -8rem;
+            ">
+    <!-- 그냥 텍스트 -->
+    <div style="font-family: 'Noto Sans KR', sans-serif;">
+        <h1>
+            {{ Msg }} 
+        </h1>
+        <a href="javascript:history.back()">이전 페이지로 돌아가기</a>
+    </div>
+</div>
+{% endblock %}

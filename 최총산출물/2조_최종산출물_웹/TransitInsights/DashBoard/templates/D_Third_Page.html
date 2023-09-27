@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div style="margin-top:20rem; 
+            height:35rem;
+            {% comment %} margin-left:3rem;  {% endcomment %}
+            text-align:center;
+            {% comment %} margin-left:-6rem; {% endcomment %}
+            margin-bottom: -8rem;
+            font-family: 'Nunito', sans-serif;
+            ">
+    <!-- 그냥 텍스트 -->
+    <div style="color:#424242; margin-top:3rem;">
+        <h1>
+            몇 호선의 데이터를 볼까요?
+        </h1>
+    </div>
+    
+    <form style="margin-top:3rem;" action="{% url 'D_Fourth' %}" method="post">
+        {% csrf_token %}
+        <div>
+            <input type="text" id="Line_Select" list="SELECT_Line" placeholder="몇 호선인가요?" name="Line_Select">
+            <datalist id="SELECT_Line">
+                {% comment %} {% for item in Line_Number %}
+                <option value="{{ item.Line }}">{{ item.Line }}</option>
+                {% endfor %} {% endcomment %}
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="51">마천지선</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+
+
+            </datalist>
+            <label for="Line_Select">호선</label>
+        </div>
+        <div style="margin-top:1.5rem;">
+            <button style="background-color:#424242; border-color:#424242;color:white; width:10rem; height:3rem; border-radius:2rem; font-family: 'Noto Sans KR', sans-serif;" type="submit">확인</button>
+            </div>
+        </form>
+</div>
+
+<script>
+    Highcharts.chart('container', {
+        chart: {
+            type: 'line'
+        },
+        title: {
+            text: 'Monthly Average Temperature'
+        },
+        subtitle: {
+            text: 'Source: ' +
+                '<a href="https://en.wikipedia.org/wiki/List_of_cities_by_average_temperature" ' +
+                'target="_blank">Wikipedia.com</a>'
+        },
+        xAxis: {
+            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+        },
+        yAxis: {
+            title: {
+                text: 'Temperature (°C)'
+            }
+        },
+        plotOptions: {
+            line: {
+                dataLabels: {
+                    enabled: true
+                },
+                enableMouseTracking: false
+            }
+        },
+        series: [{
+            name: 'Reggane',
+            data: [16.0, 18.2, 23.1, 27.9, 32.2, 36.4, 39.8, 38.4, 35.5, 29.2,
+                22.0, 17.8]
+        }, {
+            name: 'Tallinn',
+            data: [-2.9, -3.6, -0.6, 4.8, 10.2, 14.5, 17.6, 16.5, 12.0, 6.5,
+                2.0, -0.9]
+        }]
+    });
+
+</script>
+{% endblock %}

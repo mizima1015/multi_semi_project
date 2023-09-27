@@ -1,0 +1,244 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- graph_template.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <script src="https://code.highcharts.com/modules/heatmap.js"></script>
+    
+</head>
+
+<body>
+    <div style="margin-top:3rem;
+                font-family: 'Nunito', sans-serif;
+                 ">
+        <div><h3 style="text-align:center;font-weight:700;">{{ Selected_Line|safe }} 호선의 전체 혼잡도 정보입니다</h3></div>
+        <hr>
+        <div style="display:flex; margin-top:5rem; margin-left:10rem;">
+                
+                <div id="WeekDay_PI_UP" style="width: 40rem; height: 40rem;"></div>
+                {% comment %} <div id="WeekDay_PI_DOWN" style="width: 40rem; height: 40rem;"></div> {% endcomment %}
+                <div id="ALL_LINE_CHART" style="width: 45rem; height: 40rem; margin-left:7rem;"></div>
+        
+        </div>
+        <div id="ALL_Result_Heatmap" style="margin-top:-5rem;width: 90%; height: 70rem; margin-left:6rem;"></div>
+
+        <hr>
+
+        <div style="text-align:center;"><h3 style="text-align:center;font-weight:700;">{{ Selected_Line|safe }} 호선 개별역의 혼잡도 입니다</h3></div>
+            
+            <form style="text-align: center;" action="{% url 'D_Fivth' %}" method="post">
+                {% csrf_token %}
+                <div>
+                    <label for="Station_Select">역 이름</label>
+                    <input type="text" id="Station_Select" list="Select_Station" placeholder="어느 역을 확인할까요" name="Station_Select">
+                    <datalist id="Select_Station">
+                        {% for item in row_name %}
+                        <option value="{{ item }}">{{ item }}</option>
+                        {% endfor %}
+                    </datalist>
+                    <input type="hidden" name="Line_Select" value="{{ Selected_Line|safe }}">
+                    <input type="hidden" name="Selected_Station" value="{{ Selected_Station|safe }}">
+                    <input type="hidden" name="MSG02" value="{{ MSG02|safe }}">
+
+                    <button type="submit">결과확인</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        // Highcharts 전체 선 그래프
+        Highcharts.chart('ALL_LINE_CHART', {
+            chart: {
+                type: 'spline'
+            },
+            title: {
+                text: ' ',
+                style: {
+                    fontSize: '1.5rem'
+                }
+            },
+            tooltip: {
+                style: {
+                    fontSize: '12px'
+                },
+            },
+            xAxis: {
+                categories: {{ col_name|safe }}
+            },
+            yAxis: {
+                title: {
+                    text: 'Values'
+                }
+            },
+            series: [{
+                name: '상행',
+                data: {{ DIRECTION_Line_UP|safe }}
+            },
+            {
+                name: '하행',
+                data: {{ DIRECTION_Line_DOWN|safe }}
+            }]
+        });
+
+        // Highcharts 전체 히트맵 그래프
+        Highcharts.chart('ALL_Result_Heatmap', {
+            chart: {
+                type: 'heatmap',
+                marginTop: 40,
+                marginBottom: 80,
+                plotBorderWidth: 1
+            },
+            title: {
+                text: ' ',
+                style: {
+                    fontSize: '1.5rem'
+                }
+            },
+            xAxis: {
+                categories: ['TIME_05','TIME_05', 'TIME_06', 'TIME_07', 'TIME_08', 'TIME_09', 'TIME_10', 'TIME_11', 'TIME_12', 'TIME_13', 'TIME_14', 'TIME_15', 'TIME_16', 'TIME_17', 'TIME_18', 'TIME_19', 'TIME_20', 'TIME_21', 'TIME_22', 'TIME_23', 'TIME_24'],
+                staggerLines: 1,
+                labels: {
+                    style: {
+                        fontSize: '10px'
+                    },
+                    rotation: -45
+                }
+                
+            },
+            yAxis: {
+                categories:{{ row_name_H|safe }},
+                staggerLines: 1,
+                labels: {
+                    style: {
+                        fontSize: '10px'
+                    },
+                    rotation: 0
+                        },
+            },
+            tooltip: {
+                format: '<b>{series.xAxis.categories.(point.x)}</b> 시의<br>' +
+                    '<b>{series.yAxis.categories.(point.y)}</b> 역 혼잡<br>'+
+                    '<b>{point.value}</b>',
+                style: {
+                    fontSize: '10px'
+                },
+            },
+            colorAxis: {
+                min: 0,
+                minColor: '#FFFFFF',
+                maxColor: Highcharts.getOptions().colors[0]
+            },
+            legend: {
+                align: 'right',
+                layout: 'vertical',
+                margin: 0,
+                verticalAlign: 'top',
+                y: 25,
+                symbolHeight: 280
+            },
+            series: [{
+                borderWidth: 1,
+                data: {{ ALL_Result_Heatmap|safe }},
+            }]
+        });
+
+        // Highcharts 전체 요일 파이그래프 - 상선
+        Highcharts.chart('WeekDay_PI_UP', {
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie'
+            },
+            title: {
+                text: ' ',
+                style: {
+                    fontSize: '1.5rem'
+                }
+            },
+            tooltip: {
+                pointFormat: '<b>{point.percentage:.1f}%</b>',
+                style: {
+                    fontSize: '10px'
+                }
+            },
+            accessibility: {
+                point: {
+                    valueSuffix: '%'
+                }
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                        style: {
+                            fontSize: '10px'}
+                    }
+                }
+            },
+            series: [{
+                name: 'Brands',
+                colorByPoint: true,
+                data: {{ DAY_Pie_UP|safe }},
+            }]
+
+        });
+
+        // Highcharts 전체 요일 파이그래프 - 하선
+        Highcharts.chart('WeekDay_PI_DOWN', {
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie'
+            },
+            title: {
+                text: ' ',
+            },
+            tooltip: {
+                pointFormat: '하행:<b>{point.percentage:.1f}%</b>',
+                style: {
+                    fontSize: '10px'
+                }
+            },
+            accessibility: {
+                point: {
+                    valueSuffix: '%'
+                }
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                        style: {
+                            fontSize: '10px'}
+                    },
+                }
+            },
+            series: [{
+                name: 'Brands',
+                colorByPoint: true,
+                data: {{ DAY_Pie_DOWN|safe }},
+                style: {
+                    fontSize: '10px'
+                },
+            }]
+        });
+
+        // Highcharts 단일역 선 그래프
+    </script>
+</body>
+</html>
+{% endblock %}

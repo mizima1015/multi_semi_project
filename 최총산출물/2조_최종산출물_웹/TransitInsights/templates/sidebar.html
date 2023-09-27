@@ -1,0 +1,142 @@
+<div style="background-color:#dadadaff;" class="SIDEBAR">
+    <div style="font-size: 2.5rem; margin:1rem; margin-bottom:2rem" class="Logo">
+        TransitInsights
+    </div>
+    <ul>
+        <li>
+            <div class="WEB_BTN">
+                <a href='/' class="S_ICON_ALIGN">
+                    <span style="color:#FFFFFF;" class="material-symbols-outlined">
+                        home
+                        </span>
+                    <span class="S_Title">홈으로</span>
+                </a>
+            </div>
+        </li>
+        <li>
+            <div class="First_HS_BTN">
+            <a href="{% url 'Second_Page' '1' %}" class="S_ICON_ALIGN">
+                <span style="color:#FFFFFF;" class="material-symbols-outlined">
+                    counter_1
+                    </span>
+                <span class="S_Title">1호선</span>
+            </a>
+            </div>
+        </li>
+        <li>
+            <div class="Second_HS_BTN">
+            <a href="{% url 'Second_Page' '2' %}" class="S_ICON_ALIGN">
+                <span style="color:#FFFFFF;" class="material-symbols-outlined">
+                    counter_2
+                    </span>
+                <span class="S_Title">2호선</span>
+            </a>
+            </div>
+            <div class="Second_HS_BTN">
+                <a href="{% url 'Second_Page' '21' %}" class="S_ICON_ALIGN">
+                    <span style="color:#FFFFFF;" class="material-symbols-outlined">
+                        alt_route
+                        </span>
+                    <span class="S_Title">성수지선</span>
+                </a>
+            </div>
+            <div class="Second_HS_BTN">
+                <a href="{% url 'Second_Page' '22' %}" class="S_ICON_ALIGN">
+                    <span style="color:#FFFFFF;" class="material-symbols-outlined">
+                        alt_route
+                        </span>
+                    <span class="S_Title">신정지선</span>
+                </a>
+            </div>
+        </li>
+        <li>
+            <div class="Third_HS_BTN">
+            <a href="{% url 'Second_Page' '3' %}" class="S_ICON_ALIGN">
+                <span style="color:#FFFFFF;" class="material-symbols-outlined">
+                    counter_3
+                    </span>
+                <span class="S_Title">3호선</span>
+            </a>
+            </div>
+        </li>
+        <li>
+            <div class="Fourth_HS_BTN">
+            <a href="{% url 'Second_Page' '4' %}" class="S_ICON_ALIGN">
+                <span style="color:#FFFFFF;" class="material-symbols-outlined">
+                    counter_4
+                    </span>
+                <span class="S_Title">4호선</span>
+            </a>
+            </div>
+        </li>
+        <li>
+            <div class="Fiveth_HS_BTN">
+            <a href="{% url 'Second_Page' '5' %}" class="S_ICON_ALIGN">
+                <span style="color:#FFFFFF;" class="material-symbols-outlined">
+                    counter_5
+                    </span>
+                <span class="S_Title">5호선</span>
+            </a>
+            </div>
+            <div class="Fiveth_HS_BTN">
+                <a href="{% url 'Second_Page' '51' %}" class="S_ICON_ALIGN">
+                    <span style="color:#FFFFFF;" class="material-symbols-outlined">
+                        alt_route
+                        </span>
+                    <span class="S_Title">마천지선</span>
+                </a>
+                </div>
+        </li>
+        <li>
+            <div class="Sixth_HS_BTN">
+            <a href="{% url 'Second_Page' '6' %}" class="S_ICON_ALIGN">
+                <span style="color:#FFFFFF;" class="material-symbols-outlined">
+                    counter_6
+                    </span>
+                <span class="S_Title">6호선</span>
+            </a>
+            </div>
+        </li>
+        <li>
+            <div class="Seventh_HS_BTN">
+            <a href="{% url 'Second_Page' '7' %}" class="S_ICON_ALIGN">
+                <span style="color:#FFFFFF;" class="material-symbols-outlined">
+                    counter_7
+                    </span>
+                <span class="S_Title">7호선</span>
+            </a>
+            </div>
+        </li>
+        <li>
+            <div class="Eighth_HS_BTN">
+            <a href="{% url 'Second_Page' '8' %}" class="S_ICON_ALIGN">
+                <span style="color:#FFFFFF;" class="material-symbols-outlined">
+                    counter_8
+                    </span>
+                <span class="S_Title">8호선</span>
+            </a>
+            </div>
+        </li>
+        <li>
+            <div class="WEB_BTN">
+            <a href='/DashBoard' class="S_ICON_ALIGN">
+                <span style="color:#FFFFFF;" class="material-symbols-outlined">
+                    bar_chart
+                    </span>
+                <span class="S_Title">대시보드</span>
+            </a>
+            </div>
+        </li>
+    </ul>
+</div>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
+{% comment %} <script>
+    let navigation = document.querySelector('.navigation');
+    let toggle = document.querySelector('.toggle');
+    toggle.onclick = function(){
+        navigation.classList.toggle('active')
+    }
+</script> {% endcomment %}

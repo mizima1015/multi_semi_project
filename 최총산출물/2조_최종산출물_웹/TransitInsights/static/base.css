@@ -1,0 +1,224 @@
+:root {
+    --Result_color: rgb(3, 164, 189);
+    --Font_color:#424242;
+    --Font_color_W:#ffffff;
+    --SideBar_color:#dadadaff;
+    --1HS_color:#0052A4;
+    --2HS_color:#00A84D;
+    --3HS_color:#EF7C1C;
+    --4HS_color:#00A4E3;
+    --5HS_color:#996CAC;
+    --6HS_color:#CD7C2F;
+    --7HS_color:#747F00;
+    --8HS_color:#E6186C;
+}
+
+.Logo{
+    text-align: center;
+    font-family: 'Nunito', sans-serif;
+    color: var(--Font_color);
+}
+
+.Main_align{
+    color: var(--Font_color);
+    text-align:center; 
+    margin-top:2rem;
+}
+
+.Text_align{
+    color: var(--Font_color);
+    text-align:center;
+    font-family: 'Nunito', sans-serif;
+    margin: 1rem;
+}
+
+.result_btn{
+    background-color: var(--Result_color);
+    color:aliceblue;
+    font-size: 1.5rem;
+    border-radius: 2rem; 
+    border-color: var(--Result_color);
+}
+
+.container{
+    display: flex;
+}
+
+.box{
+    display: flex;
+    flex-grow: 1;
+}
+
+.box-sidebar{
+    width: 12.5rem;
+}
+
+.box_contents{
+    flex-grow: 1;
+    min-width: 0;
+}
+
+.SIDEBAR{
+    position: fixed;
+    inset: 0.01rem;
+    background: var(--SideBar_color);
+    width: 200px;
+    box-shadow: 15px 15px 25px rgba(0, 0, 0, 0.05);
+    transition: 0.5s;
+}
+
+.SIDEBAR ul{
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.SIDEBAR ul li{
+    position: relative;
+    left: -2rem;
+    list-style: none;
+    width: 100%;
+}
+
+.SIDEBAR ul li a.S_ICON_ALIGN:hover{
+    background: rgba(0, 0, 0, 0.3);
+    width: 15rem;
+    height: 3.5rem;
+    border-radius: 9rem;
+}
+
+.WEB_BTN,.First_HS_BTN, .Second_HS_BTN,.Third_HS_BTN,.Fourth_HS_BTN,.Fiveth_HS_BTN,.Sixth_HS_BTN,.Seventh_HS_BTN,.Eighth_HS_BTN{
+    margin-top: 0.5rem;
+    width: 15rem;
+    height: 3.5rem;
+    color:var(--Font_color_W);
+    font-size: 2rem;
+    text-align: center;
+    line-height: 3.5rem;
+    border-radius: 9rem;
+}
+
+.WEB_BTN{
+    background: var(--Font_color); 
+}
+
+.First_HS_BTN{
+    background: var(--1HS_color); 
+}
+
+.Second_HS_BTN{
+    background: var(--2HS_color);
+}
+
+.Third_HS_BTN{
+    background: var(--3HS_color);
+}
+
+.Fourth_HS_BTN{
+    background: var(--4HS_color);
+}
+
+.Fiveth_HS_BTN{
+    background: var(--5HS_color);
+}
+
+.Sixth_HS_BTN{
+    background: var(--6HS_color);
+}
+
+.Seventh_HS_BTN{
+    background: var(--7HS_color);
+}
+
+.Eighth_HS_BTN{
+    background: var(--8HS_color);
+}
+
+.S_Title{
+    color:var(--Font_color_W)
+}
+
+/* .SIDEBAR ul li a{
+    position: relative;
+    left: -2rem;
+    display: block;
+    width: 100%;
+    display: flex;
+} */
+
+.S_ICON_ALIGN{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Firstapp_CLASS{
+    margin-top: 6rem;
+    margin-left: -8rem;
+}
+
+.Warning_PAGE{
+    margin-top: 23rem;
+    margin-left: 0rem;
+}
+
+.Main_PAGE{
+    margin-top: 18rem;
+    margin-left: 0rem;
+}
+
+.FirstAPP_Class{
+    margin-top:15rem;
+    height:35rem;
+}
+
+.switch-button {
+    position: relative;
+    display: inline-block;
+    width: 4rem;
+    height: 2rem;
+}
+
+.switch-button input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.onoff-switch {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius:20px;
+    background-color: #ccc;
+    box-shadow: inset 1px 5px 1px #999;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.onoff-switch:before {
+    position: absolute;
+    height: 1.2rem;
+    width: 1.2rem;
+    left: 4px;
+    bottom: 4px;
+    background-color: #fff;
+    -webkit-transition: .5s;
+    transition: .4s;
+    border-radius:20px;
+}
+
+.switch-button input:checked + .onoff-switch {
+    background-color: #424242;
+    box-shadow: inset 1px 5px 1px #424242;
+}
+
+.switch-button input:checked + .onoff-switch:before {
+    -webkit-transform: translateX(1rem);
+    -ms-transform: translateX(1rem);
+    transform: translateX(2rem);
+}
