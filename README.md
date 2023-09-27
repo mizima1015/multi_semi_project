@@ -21,7 +21,8 @@
     5. 추가적인 파생변수 고려
    
 ## EDA
-
+  - 1. 월
+       ![README_image](README_image/월별승객수.png)
 
 
 
