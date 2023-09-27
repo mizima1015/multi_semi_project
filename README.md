@@ -52,7 +52,7 @@
        - 유의미한 변수로 판단
 
       
-    3. 시간대 / 시간대별 승객 수 비교
+    3. 시간대 / 시간대별 승객 수 비교 (상하선 구분)
        ![README_image](README_image/EDA사진/시간대별승객수(3).png)
    
        ![README_image](README_image/EDA사진/시간대별승객수(4).png)
