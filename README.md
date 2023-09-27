@@ -29,7 +29,7 @@
    
 ## EDA
   - 1. 월 / 월별 승객 수 비교
-       ![README_image](README_image/월별승객수.png)
+       ![README_image](README_image/EDA사진/월별승객수.png)
 
        - 봄,가을에는 증가하는 추세
        - 여름, 겨울에는 감소하는 추세
@@ -38,7 +38,7 @@
 
 
     2. 요일 / 요일별 승객 수 비교
-       ![README_image](README_image/요일별승객수.png)
+       ![README_image](README_image/EDA사진/요일별승객수.png)
 
        - 월요일부터 금요일까지 승객 수 증가
        - 토,일요일에는 승객 수가 급격히 감소
@@ -47,9 +47,9 @@
 
       
     3. 시간대 / 시간대별 승객 수 비교
-       ![README_image](README_image/시간대별승객수(1).png)
+       ![README_image](README_image/EDA사진/시간대별승객수(1).png)
 
-       ![README_image](README_image/시간대별승객수(2).png)
+       ![README_image](README_image/EDA사진/시간대별승객수(2).png)
 
        - 출/퇴근 시간대에 특히나 많은 이용객이 있는 것을 알 수 있음
        - 반면에 새벽시간대는 거의 없다.
@@ -58,11 +58,11 @@
 
     4. 기상조건
        
-       ![README_image](README_image/기상조건에따른승객.png)
+       ![README_image](README_image/EDA사진/기상조건에 따른승객.png)
 
-       ![README_image](README_image/강수량.png)
+       ![README_image](README_image/EDA사진/강수량.png)
 
-       ![README_image](README_image/기온&강수량.png)
+       ![README_image](README_image/EDA사진/기온&강수량.png)
 
        - 처음 가설로 설정했던 비가 많이 올 수록, 강수량이 높을 수록 지하철 이용객이 많을 것으로 예상한것과 달리 큰 관련성이 없게 나왔고 기온도 마찬가지로 큰 영향을 주지 못했다.
        - 기상조건 또 한 가설과 다르고 오차범위가 너무 크게 나타났다.
