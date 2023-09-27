@@ -86,6 +86,20 @@
 
 ## 팀원
 
+- 팀장 : 나(글쓴이) - 프로젝트 총괄, 전반 작업
+
+  팀원1 : 웹 개발 -> 개인 주소 : https://kimec995.github.io/
+
+  팀원2 : 데이터 수집과 전처리 -> 개인 주소 : https://data-analytics-nayoonee.tistory.com/
+
+  팀원3 : 데이터 수집과 전처리 -> 개인 주소 : https://datasoling.tistory.com/
+
+  팀원4 : 데이터 수집과 전처리 -> 개인주소 : https://sohyeon-choi.tistory.com/
+
+  팀원5 : 머신러닝 -> 개인주소 : https://sim-ds.tistory.com/
+
+ 
+
 
 # 폴더
 ### 데이터 정리
