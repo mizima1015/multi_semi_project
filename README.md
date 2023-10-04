@@ -66,7 +66,7 @@
 
     5. 기상조건
        
-       ![README_image](README_image/EDA사진/기상조건에 따른 승객.png)
+       ![README_image](README_image/EDA사진/기상조건에따른승객.png)
 
        ![README_image](README_image/EDA사진/강수량.png)
 
