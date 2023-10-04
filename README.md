@@ -78,8 +78,11 @@
 
 
 
-## 데이터 필터링
+## 데이터 필터링 및 가공
 ![README_image](README_image/기타/데이터필터링.png)
+
+![README_image](README_image/기타/데이터가공.png)
+
 
 ## 최종 혼잡도 계산
 
