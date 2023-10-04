@@ -79,6 +79,7 @@
 
 
 ## 데이터 필터링
+![README_image](README_image/기타/데이터필터링.png)
 
 ## 최종 혼잡도 계산
 
