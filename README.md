@@ -101,6 +101,14 @@
 - 최종혼잡도 산출물의 모습이다. 시간대의 경우 혼잡도 데이터에서 11년 부터 15년도 까지는 1시간 단위로 혼잡도를 나타냈고 이후 년도들은 20분 단위로 한잡도를 나타냈기에 시간대를 2개씩 묶어 평균을 내 모두 1시간단위로 통일 시켰다. 그리고 머신러닝의 학습효율을 높이기 위해 호선별로 파일을 분할했다.
 
 ## 머신러닝
+최종 머신러닝 코드 : https://github.com/mizima1015/multi_semi_project/blob/main/%EB%A8%B8%EC%8B%A0%EB%9F%AC%EB%8B%9D/XGBoost(%EC%B5%9C%EC%A2%85).ipynb
+
+- 처음엔 pipeline으로 RandomForestRegressor, LinearRegression, LGBMRegressor, XGBRegressor를 모두 실행해 보았다.
+- 그 결과 평과지표와 피처중요도를 확인했을 때 XGBRegressor가 가장 합리적이라고 판단했다.
+- 또 서비스 적용시 학습이 완료된 모델을 pkl 파일로 저장해 사용하는점,
+- 위험예측모델을 만든다는 점에서 학습시간과 관계없이 성능이 좋은 모델을 사용하기로 결정했다.
+
+![README_image](README_image/기타/평가지표.png)
 
 ## 웹 개발
 
